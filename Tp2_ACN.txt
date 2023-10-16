@@ -22,10 +22,6 @@ minimize fobj: sum <m in M, p in P> costo * x[m,p];
 subto defstock: forall <m in M, p in P> do 
     s[m, p] = s[m -1, p] + x[m, p] - d[m,p];
 
-# Stock inicial en cero
-subto stockinicial: forall <p in P> do
-    s[0, p] = 0
-
 # Capacidad de producción maxima de cada producto por mes
 subto maxprod: forall <m in M, p in P> do
     x[m,p] <= capProd;
@@ -41,4 +37,8 @@ subto maxstock: forall <m in M> do
     sum <p in P> s[m,p] <= capDep;
 end 
 
+# Stock inicial en cero 
+subto stockinicial: forall <p in P> do
+    s[0, p] = 
+    # ARREGLAR EL PROBLEMA DE QUE STOCK VA EN OTRA MEDIDA DE MESES QUE PROD ...
 
