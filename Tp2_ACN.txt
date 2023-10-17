@@ -14,6 +14,7 @@ param capDep := 900;                             # capacidad maxima del deposito
 # Variables
 var x[M*P] >= 0; # Unidades a fabricar de producto p en el mes m
 var s[M_s*P] >= 0; # Stock del producto p al final del mes m
+var w[M*P] integer;
 
 # Función objetivo: minimizar costo de fabricación
 minimize fobj: sum <m,p> in M*P: costo * x[m,p];
@@ -29,8 +30,8 @@ subto maxprod: forall <m,p> in M*P:
     x[m,p] <= capProd;
 
 # Lotes de 10 unidades
-#subto lotes: forall <m,p> in M*P:
-#    x[m,p] % 10 = 0;
+subto lotes: forall <m,p> in M*P:
+    x[m,p] == 10 * w[m,p];
 
 # Capacidad Maxima del deposito
 subto maxstock: forall <m> in M: 
