@@ -30,10 +30,6 @@ subto defstock: forall <m,p> in M*P:
 subto maxprod: forall <m,p> in M*P:
     x[m,p] <= capProd;
 
-# Limite de produccion maxima mensual
-subto limmax: forall <m> in M:
-    sum <p> in P: x[m,p] <= limMes;
-
 # Lotes de 10 unidades
 subto lotes: forall <m,p> in M*P:
     x[m,p] == 10 * w[m,p];
@@ -46,5 +42,10 @@ subto maxstock: forall <m> in M:
 subto stockinicial: forall <p> in P:
     s[0, p] == 0;
 
+#####################################################################
+
+# Limite de produccion maxima mensual
+subto limmax: forall <m> in M:
+    sum <p> in P: x[m,p] <= limMes;
 
 

@@ -23,7 +23,7 @@ var z[M*P] >= 0; # Unidades terciarizadas del producto p en el mes m
 var v[M*P] binary;
 
 # Función objetivo: minimizar costo de fabricación
-minimize fobj: sum <m,p> in M*P: (costo * x[m,p] + costoTerciarizar * z[m,p] * v[m,p]);
+minimize fobj: sum <m,p> in M*P: (costo * x[m,p] + costoTerciarizar * z[m,p]);
 
 # Restricciones 
 
@@ -57,7 +57,7 @@ subto limterc: forall <m> in M:
 
 # Escribimos restriccion para que la v[m,p] no sea 0 siempre.
 subto resbinaria: forall <m,p> in M*P:
-    z[m,p] <= 200 * v[m,p];
+    z[m,p] <= maxTerciarizar * v[m,p];
 
 # Minima fabricacion de productos terciarizados
 subto minterc: forall <m,p> in M*P:
