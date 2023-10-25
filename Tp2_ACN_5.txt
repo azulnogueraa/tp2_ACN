@@ -9,7 +9,6 @@ set M_s := { 0 .. 24 }; # Meses de almacenamiento
 param d[M*P] := read "Datos_final.txt" as "n+";        # demanda
 param costo := 370;                              # costo por unidad 
 param capProd := 120;                            # capacidad maxima de prod. por mes
-param capDep := 900;                             # capacidad maxima del deposito 
 param limMes := 300;				 # limite maximo de produccion en los meses
 param costoTerciarizar := 540;			 # costo de cada unidad terciarizada
 param maxTerciarizar := 200;			 # fabricacion maxima a terciarizar
@@ -21,9 +20,10 @@ var s[M_s*P] >= 0; # Stock del producto p al final del mes m
 var w[M*P] integer;
 var z[M*P] >= 0; # Unidades terciarizadas del producto p en el mes m
 var v[M*P] binary;
+var capMin;
 
 # Función objetivo: minimizar costo de fabricación
-minimize fobj: sum <m,p> in M*P: (costo * x[m,p] + costoTerciarizar * z[m,p] * v[m,p] + s[m,p]);
+minimize fobj: capMin;
 
 # Restricciones 
 
@@ -45,7 +45,7 @@ subto lotes: forall <m,p> in M*P:
 
 # Capacidad Maxima del deposito
 subto maxstock: forall <m> in M: 
-    sum <p> in P: s[m,p] <= capDep; 
+    sum <p> in P: s[m,p] <= capMin; 
 
 # Stock inicial en cero 
 subto stockinicial: forall <p> in P:
@@ -62,8 +62,6 @@ subto resbinaria: forall <m,p> in M*P:
 # Minima fabricacion de productos terciarizados
 subto minterc: forall <m,p> in M*P:
     z[m,p] >= minProdTerc * v[m,p];
-
- 
 
 
 
