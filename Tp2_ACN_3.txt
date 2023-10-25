@@ -10,9 +10,9 @@ param d[M*P] := read "Datos_final.txt" as "n+";        # demanda
 param costo := 370;                              # costo por unidad 
 param capProd := 120;                            # capacidad maxima de prod. por mes
 param capDep := 900;                             # capacidad maxima del deposito 
-param limMes := 300;				 # limite maximo de produccion en los meses
-param costoTerciarizar := 540;			 # costo de cada unidad terciarizada
-param maxTerciarizar := 200;			 # fabricacion maxima a terciarizar
+param maxProd := 300;				             # limite maximo de produccion en los meses
+param costoTerciarizar := 540;			         # costo de cada unidad terciarizada
+param maxTerciarizar := 200;			         # fabricacion maxima a terciarizar
 
 # Variables
 var x[M*P] >= 0; # Unidades a fabricar de producto p en el mes m
@@ -47,7 +47,7 @@ subto stockinicial: forall <p> in P:
 
 # Limite de produccion maxima mensual
 subto limmax: forall <m> in M:
-    sum <p> in P: x[m,p] <= limMes;
+    sum <p> in P: x[m,p] <= maxProd;
 
 #################################################################
 
