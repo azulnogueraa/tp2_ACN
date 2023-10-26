@@ -6,7 +6,7 @@ set M_s := { 0 .. 24 }; # Meses de almacenamiento
 
 
 # Parámetros
-param d[M*P] := read "Datos_final.txt" as "n+";     # demanda
+param d[M*P] := read "../Datos_final.txt" as "n+";     # demanda
 param costo := 370;                                 # costo por unidad 
 param capProd := 120;                               # capacidad maxima de prod. por mes
 param maxProd := 300;				                # limite maximo de produccion en los meses
