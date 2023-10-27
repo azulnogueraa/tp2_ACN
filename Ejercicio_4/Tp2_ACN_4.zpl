@@ -19,7 +19,7 @@ param minProdTerc := 20;			                 # fabricacion minima de cada product
 var x[M*P] >= 0; # Unidades a fabricar de producto p en el mes m
 var s[M_s*P] >= 0; # Stock del producto p al final del mes m
 var w[M*P] integer;
-var z[M*P] >= 0; # Unidades terciarizadas del producto p en el mes m
+var z[M*P] integer >= 0; # Unidades terciarizadas del producto p en el mes m
 var v[M*P] binary;
 
 # Función objetivo: minimizar costo de fabricación
