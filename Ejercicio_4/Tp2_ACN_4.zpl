@@ -55,6 +55,8 @@ subto stockinicial: forall <p> in P:
 subto limterc: forall <m> in M:
     sum <p> in P: z[m,p] <= maxTerciarizar;
 
+############################################################
+
 # Escribimos restriccion para que la v[m,p] no sea 0 siempre.
 subto resbinaria: forall <m,p> in M*P:
     z[m,p] <= maxTerciarizar * v[m,p];
